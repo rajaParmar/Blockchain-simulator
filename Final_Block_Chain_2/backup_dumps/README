@@ -1,0 +1,25 @@
+Seed Node:
+1) We have created a single seed node.
+2)  We are opening it on a fixed port no. 46680 so that we can hard code it in clients. In the case that the port number 46680 (which is highly 
+unlikely) we will print the message to close the port and exit from seed.
+3)IP address of the seed node should be provided explicitly in the client.py program.
+4)Seed node provides a string comprising of IP addresses and Port numbers of the clients connected to it.
+Format: "-IPAddress1@Portnumber1-IPAddress2@Portnumber2"  is the information sent to third client requesting information
+
+Client Node:
+
+1)Client node first connects to the seed node and in return gets a list of all IP addresses and Port numbers currently connected in the p2p 
+network.
+2)From the list of these peers currently in the network. it will choose the MIN(4, number of peers) to form  socket for gossipping. We are
+ choosing the last 4 nodes in the seed list to make p2p connection.
+3)Client starts a new thread for message creation and loops indefinitely for hearing and writing gossips.
+4) For implementing nework delays, we are creaing messages at random inervals of 5-10 seconds.
+
+Message is printed in output.txt(in append mode), on stdout and gossiped to connected peers.
+Commands:
+1) for running a seed node :
+shell >  python3 seed.py 
+2) for running a client node :
+shell> python3 client.py <IP-address of seed node>
+
+  
